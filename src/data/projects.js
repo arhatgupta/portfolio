@@ -1,0 +1,97 @@
+const projects = [
+  {
+    id: "001",
+    slug: "aaroham",
+    title: "AAROHAM",
+    category: "BRAND IDENTITY & PACKAGING",
+    year: "2024",
+    description:
+      "A complete brand identity system for Aaroham — a contemporary Indian wellness label. The visual language draws from classical motifs reinterpreted through a modern minimalist lens. Packaging design spans primary and secondary collateral with a unified typographic voice.",
+    tags: ["Branding", "Packaging", "Identity"],
+    cover: null,
+    images: [],
+    color: "#f5f0e8",
+  },
+  {
+    id: "002",
+    slug: "mauj-bpm-bar",
+    title: "MAUJ + BPM BAR",
+    category: "BRAND IDENTITY & PACKAGING",
+    year: "2024",
+    description:
+      "Dual brand identity for Mauj and BPM Bar — two distinct voices united under a shared creative vision. The packaging system balances energy and restraint, using bold typographic compositions and a restricted color palette to communicate individuality within cohesion.",
+    tags: ["Branding", "Packaging", "Identity"],
+    cover: null,
+    images: [],
+    color: "#0a0a0a",
+  },
+  {
+    id: "003",
+    slug: "kapda-loop",
+    title: "KAPDA LOOP",
+    category: "DIGITAL PRODUCT DESIGN",
+    year: "2023",
+    description:
+      "A circular fashion marketplace connecting conscious consumers with pre-loved clothing. The digital product experience prioritizes discovery and ease of listing, with a clean interface that lets the garments speak. End-to-end UX/UI design from research to high-fidelity prototype.",
+    tags: ["UI/UX", "Product Design", "Digital"],
+    cover: null,
+    images: [],
+    color: "#1a1a2e",
+  },
+  {
+    id: "004",
+    slug: "publication-design",
+    title: "PUBLICATION DESIGN",
+    category: "EDITORIAL",
+    year: "2023",
+    description:
+      "A series of editorial publications: Tyler — a culture zine exploring subcultural aesthetics; Nanku — a narrative journal with expressive layout systems; A Midnight Cookbook — where food meets atmosphere through dark, sensory typography; Doomsday Digest — an irreverent news parody with editorial wit.",
+    tags: ["Editorial", "Print", "Typography"],
+    cover: null,
+    images: [],
+    subProjects: ["TYLER", "NANKU", "A MIDNIGHT COOKBOOK", "DOOMSDAY DIGEST"],
+    color: "#f0ece4",
+  },
+  {
+    id: "005",
+    slug: "typographic-explorations",
+    title: "TYPOGRAPHIC EXPLORATIONS",
+    category: "TYPE & LETTERING",
+    year: "2023",
+    description:
+      "Three typographic investigations pushing letterform as image: Thrift Minerals — geological type studies in earthy tones; Slap — aggressive display lettering for street-level impact; Joeburg — a type system rooted in the visual culture of Johannesburg's urban landscape.",
+    tags: ["Typography", "Lettering", "Experimental"],
+    cover: null,
+    images: [],
+    subProjects: ["THRIFT MINERALS", "SLAP", "JOEBURG"],
+    color: "#2d2d2d",
+  },
+  {
+    id: "006",
+    slug: "logofolio",
+    title: "LOGOFOLIO",
+    category: "MARKS, SYMBOLS & IDENTITIES",
+    year: "2022–2024",
+    description:
+      "A curated collection of marks, symbols, and identity systems built over two years. Each mark distills a brand's essence into a singular, scalable form. The range spans wordmarks, monograms, pictorial marks, and abstract symbols across industries.",
+    tags: ["Logo Design", "Identity", "Branding"],
+    cover: null,
+    images: [],
+    color: "#ffffff",
+  },
+  {
+    id: "007",
+    slug: "cybertech-futuristic-monk",
+    title: "CYBERTECH + FUTURISTIC MONK",
+    category: "FASHION PHOTOGRAPHY & ART DIRECTION",
+    year: "2024",
+    description:
+      "Two art-directed fashion editorials in collision: Cybertech — a near-future aesthetic exploring synthetic textures and industrial light; Futuristic Monk — a spiritual counterpoint merging ascetic minimalism with speculative fashion. Concept, styling, direction, and post-production.",
+    tags: ["Art Direction", "Photography", "Fashion"],
+    cover: null,
+    images: [],
+    color: "#0d0d0d",
+  },
+];
+
+export default projects;
