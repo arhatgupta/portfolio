@@ -8,33 +8,34 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.6rem 1rem;
+  padding: 0.5rem 1rem;
   background: var(--black);
-  border-bottom: var(--row-border);
   z-index: 200;
   user-select: none;
 }
 
 .nav__logo {
-  font-size: 1rem;
-  font-weight: bold;
-  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--white);
+  font-family: var(--font);
 }
 
 .nav__links {
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
   list-style: none;
 }
 
 .nav__links a {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--grey);
-  transition: color 0.2s ease;
+  font-family: var(--font);
+  transition: color 0.15s ease;
 }
 
 .nav__links a:hover { color: var(--white); }
@@ -43,103 +44,178 @@
    ARCHIVE WRAPPER
 ════════════════════════════════════════════════════════════ */
 .archive {
-  padding-top: 2.4rem; /* nav height */
-  padding-bottom: 6rem;
+  /* push below fixed nav — nav is ~2rem tall */
+  padding-top: 2rem;
+  padding-bottom: 8rem;
 }
 
 /* ════════════════════════════════════════════════════════════
-   ARCHIVE ROW  (real project)
+   ARCHIVE ROW — real project
 ════════════════════════════════════════════════════════════ */
 .archive__row {
-  display: grid;
-  /* col 1: "#\n001", col 2: title */
-  grid-template-columns: var(--num-w) 1fr;
-  align-items: start;
-  padding: var(--row-pad);
-  border-bottom: var(--row-border);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  /* horizontal padding matches left-edge of number column */
+  padding: var(--row-pad-v) 0;
+  padding-left: 0.6rem;
+  padding-right: 1rem;
+
   cursor: pointer;
   text-decoration: none;
+
+  /* default: grey */
   color: var(--grey);
-  transition: color 0.15s ease, background 0.15s ease;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  transition: color 0.12s ease;
 }
 
 .archive__row:hover {
   color: var(--white);
 }
 
-/* number cell — stacks # on top of 001 */
+/* ─── Number cell ───────────────────────────────────────── */
 .archive__num {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  line-height: 1;
-  padding-top: 0.15rem;
-  flex-shrink: 0;
+  justify-content: flex-start;
+
+  /* fixed narrow column */
   width: var(--num-w);
+  min-width: var(--num-w);
+  flex-shrink: 0;
+
+  /* vertically align with cap-height of title */
+  padding-top: 0.18em;
+
+  line-height: 1.15;
 }
 
 .archive__hash {
-  font-size: clamp(0.65rem, 1.1vw, 0.8rem);
+  /* # symbol — same size as number */
+  font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+  font-weight: 400;
   color: inherit;
-  opacity: 0.55;
   line-height: 1;
+  letter-spacing: 0;
 }
 
 .archive__id {
-  font-size: clamp(0.65rem, 1.1vw, 0.8rem);
+  /* bare integer: 1, 2, 3 … not 001 */
+  font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+  font-weight: 400;
   color: inherit;
-  opacity: 0.7;
-  line-height: 1.3;
-  letter-spacing: 0.05em;
+  line-height: 1.2;
+  letter-spacing: 0;
 }
 
-/* title cell */
+/* ─── Title cell ────────────────────────────────────────── */
 .archive__title {
-  font-size: clamp(1.4rem, 4.5vw, 3.8rem);
-  font-weight: bold;
-  letter-spacing: 0.03em;
+  /* 
+    Key measurement from screenshot:
+    Each row title is roughly 10-11% of viewport height.
+    At 1080px viewport that's ~108px ≈ 6.75rem.
+    But the reference screenshot is cropped/zoomed,
+    actual MSCHF title size is closer to 3-3.5vw.
+  */
+  font-size: clamp(1rem, 3vw, 2.5rem);
+  font-weight: 400;
+  font-family: var(--font);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 1.05;
   color: inherit;
   word-break: break-word;
-  padding-top: 0;
-  padding-bottom: 0.15em;
 }
 
 /* ════════════════════════════════════════════════════════════
-   NEXT UP LABEL
+   FUTURE PROJECT REGION
 ════════════════════════════════════════════════════════════ */
+
+/*
+  Container wraps ALL future rows.
+  Position: relative so NEXT UP label can be absolute inside.
+*/
+.archive__future-region {
+  position: relative;
+}
+
+/* NEXT UP label — hidden by default, shown on hover of region */
 .archive__next-up {
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
+  position: absolute;
+
+  /*
+    In reference: NEXT UP floats at ~mid-height of first
+    future row, right of center horizontally.
+    We position it top-right of the region.
+  */
+  top: 0.6em;
+  right: 1.2rem;
+
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #8b0000;
-  padding: 0.9rem 1rem 0.9rem calc(var(--num-w) + 1rem);
-  border-bottom: var(--row-border);
-  user-select: none;
+  color: var(--red);
+  font-family: var(--font);
+  pointer-events: none;
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 10;
 }
 
-/* ════════════════════════════════════════════════════════════
-   FUTURE ROW
-════════════════════════════════════════════════════════════ */
+/* Show NEXT UP when hovering the future region */
+.archive__future-region:hover .archive__next-up {
+  opacity: 1;
+}
+
+/* ─── Future row ────────────────────────────────────────── */
 .archive__row--future {
   cursor: default;
+  /* slightly darker than normal grey */
   color: var(--grey-future);
 }
 
+/* Future rows do NOT change on hover */
 .archive__row--future:hover {
   color: var(--grey-future);
-  background: transparent;
 }
 
+/* Question mark title */
 .archive__title--future {
+  /*
+    Reference: question marks fill full width,
+    same size as real titles, very dark grey.
+    letter-spacing tight.
+  */
+  font-size: clamp(1rem, 3vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
   color: var(--grey-future);
-  letter-spacing: 0.05em;
-  /* dotted question marks like screenshot */
-  opacity: 0.55;
+  /* 
+    The dotted/pixelated look in the screenshot is the actual
+    font rendering at small size on dark bg — no filter needed.
+  */
+  white-space: nowrap;
+  overflow: hidden;
+
+  /* Ensure it fills the row width */
+  flex: 1;
 }
+
+/* ════════════════════════════════════════════════════════════
+   FADE IN
+════════════════════════════════════════════════════════════ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.archive  { animation: fadeIn 0.35s ease forwards; }
+.project  { animation: fadeIn 0.35s ease forwards; }
+.about    { animation: fadeIn 0.35s ease forwards; }
 
 /* ════════════════════════════════════════════════════════════
    PROJECT PAGE
@@ -152,72 +228,77 @@
 .project__back {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  font-size: 0.7rem;
+  gap: 0.5rem;
+  font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--grey);
   margin-bottom: 3rem;
-  transition: color 0.2s ease;
+  transition: color 0.15s ease;
+  font-family: var(--font);
 }
-
 .project__back:hover { color: var(--white); }
 
 .project__num {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   letter-spacing: 0.18em;
   color: var(--grey);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
   text-transform: uppercase;
+  font-family: var(--font);
 }
 
 .project__title {
-  font-size: clamp(2rem, 7vw, 5.5rem);
-  font-weight: bold;
-  letter-spacing: 0.02em;
+  font-size: clamp(1.8rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  line-height: 0.92;
+  line-height: 0.95;
   color: var(--white);
-  margin-bottom: 2.5rem;
-  border-bottom: var(--row-border);
-  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--grey-dim);
+  padding-bottom: 1.5rem;
+  font-family: var(--font);
 }
 
 .project__meta {
   display: flex;
-  gap: 3rem;
-  margin-bottom: 2.5rem;
+  gap: 2.5rem;
+  margin-bottom: 2rem;
   flex-wrap: wrap;
 }
 
 .project__meta-item {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.25rem;
 }
 
 .project__meta-label {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--grey);
+  font-family: var(--font);
 }
 
 .project__meta-value {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--white);
+  font-family: var(--font);
 }
 
 .project__desc {
-  font-size: clamp(0.8rem, 1.4vw, 1rem);
+  font-size: clamp(0.75rem, 1.3vw, 0.9rem);
   line-height: 1.9;
   color: var(--grey);
-  max-width: 60ch;
-  margin-bottom: 3rem;
-  border-bottom: var(--row-border);
-  padding-bottom: 2.5rem;
+  max-width: 58ch;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--grey-dim);
+  padding-bottom: 2rem;
+  font-family: var(--font);
 }
 
 .project__cover {
@@ -227,12 +308,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--grey-mid);
-  margin-bottom: 3rem;
-  border-bottom: var(--row-border);
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--grey-dim);
+  font-family: var(--font);
+  overflow: hidden;
 }
 
 .project__cover img {
@@ -242,34 +325,36 @@
 }
 
 .project__sub-label {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--grey);
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
+  font-family: var(--font);
 }
 
 .project__sub-list {
   list-style: none;
-  margin-bottom: 3rem;
-  border-bottom: var(--row-border);
-  padding-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--grey-dim);
+  padding-bottom: 1.5rem;
 }
 
 .project__sub-item {
-  font-size: clamp(1rem, 2.5vw, 1.6rem);
-  font-weight: bold;
-  letter-spacing: 0.04em;
+  font-size: clamp(0.9rem, 2vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--grey);
-  padding: 0.6rem 0;
-  border-top: var(--row-border);
-  transition: color 0.2s ease, padding-left 0.25s var(--ease);
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--grey-dim);
+  transition: color 0.15s ease, padding-left 0.2s var(--ease);
+  font-family: var(--font);
 }
 
 .project__sub-item:hover {
   color: var(--white);
-  padding-left: 0.6rem;
+  padding-left: 0.5rem;
 }
 
 .project__nav {
@@ -280,21 +365,22 @@
 }
 
 .project__nav-label {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--grey);
+  font-family: var(--font);
 }
 
 .project__nav-link {
-  font-size: clamp(0.8rem, 1.8vw, 1.1rem);
-  font-weight: bold;
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--grey);
-  transition: color 0.2s ease;
+  transition: color 0.15s ease;
+  font-family: var(--font);
 }
-
 .project__nav-link:hover { color: var(--white); }
 
 /* ════════════════════════════════════════════════════════════
@@ -302,112 +388,113 @@
 ════════════════════════════════════════════════════════════ */
 .about {
   padding: 2.4rem 1rem 6rem;
-  max-width: 700px;
+  max-width: 680px;
 }
 
-.about__title {
-  font-size: clamp(2rem, 6vw, 4.5rem);
-  font-weight: bold;
-  letter-spacing: 0.02em;
+.about__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  line-height: 0.92;
+  color: var(--grey);
+  margin-bottom: 3rem;
+  transition: color 0.15s ease;
+  font-family: var(--font);
+}
+.about__back:hover { color: var(--white); }
+
+.about__title {
+  font-size: clamp(1.8rem, 5.5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 0.95;
   color: var(--white);
-  margin-bottom: 2.5rem;
-  border-bottom: var(--row-border);
-  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--grey-dim);
+  padding-bottom: 1.2rem;
+  font-family: var(--font);
 }
 
 .about__bio {
-  font-size: clamp(0.8rem, 1.4vw, 1rem);
+  font-size: clamp(0.72rem, 1.2vw, 0.88rem);
   line-height: 1.9;
   color: var(--grey);
-  max-width: 58ch;
-  margin-bottom: 3rem;
-  border-bottom: var(--row-border);
-  padding-bottom: 2rem;
+  max-width: 56ch;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--grey-dim);
+  padding-bottom: 1.8rem;
+  font-family: var(--font);
 }
 
 .about__section-label {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--grey);
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
+  font-family: var(--font);
 }
 
 .about__list {
   list-style: none;
-  margin-bottom: 3rem;
-  border-bottom: var(--row-border);
-  padding-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--grey-dim);
+  padding-bottom: 1.2rem;
 }
 
 .about__list li {
-  font-size: clamp(0.75rem, 1.3vw, 0.9rem);
-  letter-spacing: 0.06em;
+  font-size: clamp(0.7rem, 1.1vw, 0.82rem);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--grey);
-  padding: 0.55rem 0;
-  border-top: var(--row-border);
-  transition: color 0.2s ease;
+  padding: 0.45rem 0;
+  border-top: 1px solid var(--grey-dim);
+  transition: color 0.15s ease;
+  font-family: var(--font);
 }
-
 .about__list li:hover { color: var(--white); }
 
 .about__contact-heading {
-  font-size: clamp(1.2rem, 3vw, 2.2rem);
-  font-weight: bold;
-  letter-spacing: 0.02em;
+  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--white);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
+  font-family: var(--font);
 }
 
 .about__contact-links {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .about__contact-link {
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--grey);
-  transition: color 0.2s ease;
+  transition: color 0.15s ease;
+  font-family: var(--font);
 }
-
 .about__contact-link:hover { color: var(--white); }
-
-/* ════════════════════════════════════════════════════════════
-   FADE IN ANIMATION
-════════════════════════════════════════════════════════════ */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.archive,
-.project,
-.about {
-  animation: fadeIn 0.4s ease forwards;
-}
 
 /* ════════════════════════════════════════════════════════════
    RESPONSIVE
 ════════════════════════════════════════════════════════════ */
 @media (max-width: 600px) {
-  :root {
-    --num-w: 2.8rem;
-  }
+  :root { --num-w: 2.4rem; }
 
-  .nav { padding: 0.55rem 0.75rem; }
-  .nav__links { gap: 1.5rem; }
-  .nav__links a { font-size: 0.65rem; }
+  .nav { padding: 0.45rem 0.75rem; }
+  .nav__links { gap: 1.2rem; }
 
-  .archive__row { padding-left: 0.75rem; padding-right: 0.75rem; }
-  .archive__next-up { padding-left: calc(var(--num-w) + 0.75rem); }
+  .archive__row { padding-left: 0.5rem; }
+  .archive__next-up { right: 0.75rem; }
 
-  .project { padding: 2.4rem 0.75rem 5rem; }
-  .about   { padding: 2.4rem 0.75rem 5rem; }
+  .project { padding: 2.2rem 0.75rem 4rem; }
+  .about   { padding: 2.2rem 0.75rem 4rem; }
 }

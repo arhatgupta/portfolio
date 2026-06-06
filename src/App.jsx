@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import Navbar   from "./components/Navbar";
-import Home     from "./pages/Home";
-import About    from "./pages/About";
+import Navbar      from "./components/Navbar";
+import Home        from "./pages/Home";
+import About       from "./pages/About";
 import ProjectPage from "./pages/ProjectPage";
 import "./styles/global.css";
 import "./styles/archive.css";
@@ -19,9 +19,9 @@ function AppRoutes() {
       <ScrollReset />
       <Navbar />
       <Routes>
-        <Route path="/"                   element={<Home />} />
-        <Route path="/about"              element={<About />} />
-        <Route path="/project/:slug"      element={<ProjectPage />} />
+        <Route path="/"              element={<Home />} />
+        <Route path="/about"         element={<About />} />
+        <Route path="/project/:slug" element={<ProjectPage />} />
       </Routes>
     </>
   );

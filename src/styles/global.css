@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap');
+
 /* ─── RESET ──────────────────────────────────────────────── */
 *, *::before, *::after {
   margin: 0;
@@ -13,22 +15,21 @@ html {
 
 /* ─── TOKENS ─────────────────────────────────────────────── */
 :root {
-  --black:       #060606;
-  --white:       #f4f4f0;
-  --grey:        #5a5a5a;
-  --grey-mid:    #3a3a3a;
-  --grey-dim:    #1e1e1e;
-  --grey-future: #222222;
+  --black:        #060606;
+  --white:        #f0f0ec;
+  --grey:         #555555;
+  --grey-mid:     #333333;
+  --grey-dim:     #1e1e1e;
+  --grey-future:  #2a2a2a;
+  --red:          #cc1111;
 
-  /* exact monospace used by MSCHF — Courier-style bitmap mono */
-  --font: 'Courier New', 'Courier', monospace;
+  --font:         'IBM Plex Mono', 'Courier New', monospace;
 
-  /* archive row sizing */
-  --num-w:    3.5rem;   /* fixed width for number column */
-  --row-pad:  0.55rem 0;
-  --row-border: 1px solid #1c1c1c;
+  /* number column — narrow fixed width */
+  --num-w:        3rem;
+  --row-pad-v:    0.28em;
 
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease:         cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ─── BASE ───────────────────────────────────────────────── */
@@ -37,8 +38,9 @@ body {
   color: var(--white);
   font-family: var(--font);
   font-size: 1rem;
-  line-height: 1.35;
+  line-height: 1.25;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   cursor: default;
 }
 

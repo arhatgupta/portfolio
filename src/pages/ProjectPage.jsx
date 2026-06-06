@@ -3,12 +3,11 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import projects from "../data/projects";
 
 export default function ProjectPage() {
-  const { slug } = useParams();
-  const project  = projects.find((p) => !p.future && p.slug === slug);
-
-  const realProjects  = projects.filter((p) => !p.future);
-  const currentIndex  = realProjects.findIndex((p) => p.slug === slug);
-  const nextProject   = realProjects[(currentIndex + 1) % realProjects.length];
+  const { slug }   = useParams();
+  const real       = projects.filter((p) => !p.future);
+  const project    = real.find((p) => p.slug === slug);
+  const idx        = real.findIndex((p) => p.slug === slug);
+  const next       = real[(idx + 1) % real.length];
 
   useEffect(() => { window.scrollTo(0, 0); }, [slug]);
 
@@ -18,13 +17,9 @@ export default function ProjectPage() {
     <main className="project">
       <Link to="/" className="project__back">← Archive</Link>
 
-      <p className="project__num">
-        #{String(project.id).padStart(3, "0")}
-      </p>
-
+      <p className="project__num">#{project.id}</p>
       <h1 className="project__title">{project.title}</h1>
 
-      {/* Meta */}
       <div className="project__meta">
         <div className="project__meta-item">
           <span className="project__meta-label">Category</span>
@@ -37,44 +32,35 @@ export default function ProjectPage() {
         {project.tags && (
           <div className="project__meta-item">
             <span className="project__meta-label">Tags</span>
-            <span className="project__meta-value">
-              {project.tags.join(" · ")}
-            </span>
+            <span className="project__meta-value">{project.tags.join(" · ")}</span>
           </div>
         )}
       </div>
 
-      {/* Description */}
       <p className="project__desc">{project.description}</p>
 
-      {/* Cover */}
       <div className="project__cover">
         {project.cover
           ? <img src={project.cover} alt={project.title} />
-          : <span>{String(project.id).padStart(3, "0")} — {project.title}</span>
+          : <span>{String(project.id).padStart(3,"0")} — {project.title}</span>
         }
       </div>
 
-      {/* Sub-projects */}
       {project.subProjects && (
         <>
           <p className="project__sub-label">Included Works</p>
           <ul className="project__sub-list">
-            {project.subProjects.map((sub) => (
-              <li key={sub} className="project__sub-item">{sub}</li>
+            {project.subProjects.map((s) => (
+              <li key={s} className="project__sub-item">{s}</li>
             ))}
           </ul>
         </>
       )}
 
-      {/* Next project nav */}
       <div className="project__nav">
         <span className="project__nav-label">Next Project</span>
-        <Link
-          to={`/project/${nextProject.slug}`}
-          className="project__nav-link"
-        >
-          {nextProject.title} →
+        <Link to={`/project/${next.slug}`} className="project__nav-link">
+          {next.title} →
         </Link>
       </div>
     </main>
