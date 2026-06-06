@@ -1,120 +1,82 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { gsap } from "gsap";
 import projects from "../data/projects";
-import Footer from "../components/Footer";
 
 export default function ProjectPage() {
   const { slug } = useParams();
-  const project = projects.find((p) => p.slug === slug);
-  const heroRef = useRef(null);
+  const project  = projects.find((p) => !p.future && p.slug === slug);
 
-  const currentIndex = projects.findIndex((p) => p.slug === slug);
-  const nextProject = projects[(currentIndex + 1) % projects.length];
+  const realProjects  = projects.filter((p) => !p.future);
+  const currentIndex  = realProjects.findIndex((p) => p.slug === slug);
+  const nextProject   = realProjects[(currentIndex + 1) % realProjects.length];
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    if (!heroRef.current) return;
-
-    gsap.fromTo(
-      heroRef.current.children,
-      { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "expo.out",
-        stagger: 0.1,
-      }
-    );
-  }, [slug]);
+  useEffect(() => { window.scrollTo(0, 0); }, [slug]);
 
   if (!project) return <Navigate to="/" replace />;
 
   return (
-    <main className="project-page">
-      <Link to="/" className="project-page__back">
-        Work
-      </Link>
+    <main className="project">
+      <Link to="/" className="project__back">← Archive</Link>
 
-      {/* Hero */}
-      <div className="project-page__hero" ref={heroRef}>
-        <p className="project-page__num">{project.id}</p>
-        <h1 className="project-page__title">{project.title}</h1>
-        <div className="project-page__meta">
-          <div className="project-page__meta-item">
-            <span className="project-page__meta-label">Category</span>
-            <span className="project-page__meta-value">{project.category}</span>
-          </div>
-          <div className="project-page__meta-item">
-            <span className="project-page__meta-label">Year</span>
-            <span className="project-page__meta-value">{project.year}</span>
-          </div>
-          {project.tags && (
-            <div className="project-page__meta-item">
-              <span className="project-page__meta-label">Tags</span>
-              <span className="project-page__meta-value">
-                {project.tags.join(" · ")}
-              </span>
-            </div>
-          )}
+      <p className="project__num">
+        #{String(project.id).padStart(3, "0")}
+      </p>
+
+      <h1 className="project__title">{project.title}</h1>
+
+      {/* Meta */}
+      <div className="project__meta">
+        <div className="project__meta-item">
+          <span className="project__meta-label">Category</span>
+          <span className="project__meta-value">{project.category}</span>
         </div>
-      </div>
-
-      {/* Cover image placeholder */}
-      <div className="project-page__cover">
-        <div
-          className="project-page__cover-placeholder"
-          style={{ background: project.color }}
-        >
-          {project.cover ? (
-            <img src={project.cover} alt={project.title} />
-          ) : (
-            <span>
-              {project.id} — {project.title}
+        <div className="project__meta-item">
+          <span className="project__meta-label">Year</span>
+          <span className="project__meta-value">{project.year}</span>
+        </div>
+        {project.tags && (
+          <div className="project__meta-item">
+            <span className="project__meta-label">Tags</span>
+            <span className="project__meta-value">
+              {project.tags.join(" · ")}
             </span>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
-      {/* Body */}
-      <div className="project-page__body">
-        <p className="project-page__description">{project.description}</p>
-        <div className="project-page__tags">
-          {project.tags?.map((tag) => (
-            <span key={tag} className="project-page__tag">
-              {tag}
-            </span>
-          ))}
-        </div>
+      {/* Description */}
+      <p className="project__desc">{project.description}</p>
+
+      {/* Cover */}
+      <div className="project__cover">
+        {project.cover
+          ? <img src={project.cover} alt={project.title} />
+          : <span>{String(project.id).padStart(3, "0")} — {project.title}</span>
+        }
       </div>
 
-      {/* Sub-projects if any */}
+      {/* Sub-projects */}
       {project.subProjects && (
-        <div className="project-page__sub-projects">
-          <p className="project-page__sub-label">Included works</p>
-          <ul className="project-page__sub-list">
+        <>
+          <p className="project__sub-label">Included Works</p>
+          <ul className="project__sub-list">
             {project.subProjects.map((sub) => (
-              <li key={sub} className="project-page__sub-item">
-                {sub}
-              </li>
+              <li key={sub} className="project__sub-item">{sub}</li>
             ))}
           </ul>
-        </div>
+        </>
       )}
 
-      {/* Next project */}
-      <div className="project-page__next">
-        <p className="project-page__next-label">Next Project</p>
+      {/* Next project nav */}
+      <div className="project__nav">
+        <span className="project__nav-label">Next Project</span>
         <Link
           to={`/project/${nextProject.slug}`}
-          className="project-page__next-link"
+          className="project__nav-link"
         >
-          {nextProject.title} ↗
+          {nextProject.title} →
         </Link>
       </div>
-
-      <Footer />
     </main>
   );
 }

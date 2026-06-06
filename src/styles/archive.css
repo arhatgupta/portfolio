@@ -1,0 +1,413 @@
+/* ════════════════════════════════════════════════════════════
+   NAVBAR
+════════════════════════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  background: var(--black);
+  border-bottom: var(--row-border);
+  z-index: 200;
+  user-select: none;
+}
+
+.nav__logo {
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.nav__links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav__links a {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey);
+  transition: color 0.2s ease;
+}
+
+.nav__links a:hover { color: var(--white); }
+
+/* ════════════════════════════════════════════════════════════
+   ARCHIVE WRAPPER
+════════════════════════════════════════════════════════════ */
+.archive {
+  padding-top: 2.4rem; /* nav height */
+  padding-bottom: 6rem;
+}
+
+/* ════════════════════════════════════════════════════════════
+   ARCHIVE ROW  (real project)
+════════════════════════════════════════════════════════════ */
+.archive__row {
+  display: grid;
+  /* col 1: "#\n001", col 2: title */
+  grid-template-columns: var(--num-w) 1fr;
+  align-items: start;
+  padding: var(--row-pad);
+  border-bottom: var(--row-border);
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--grey);
+  transition: color 0.15s ease, background 0.15s ease;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.archive__row:hover {
+  color: var(--white);
+}
+
+/* number cell — stacks # on top of 001 */
+.archive__num {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+  padding-top: 0.15rem;
+  flex-shrink: 0;
+  width: var(--num-w);
+}
+
+.archive__hash {
+  font-size: clamp(0.65rem, 1.1vw, 0.8rem);
+  color: inherit;
+  opacity: 0.55;
+  line-height: 1;
+}
+
+.archive__id {
+  font-size: clamp(0.65rem, 1.1vw, 0.8rem);
+  color: inherit;
+  opacity: 0.7;
+  line-height: 1.3;
+  letter-spacing: 0.05em;
+}
+
+/* title cell */
+.archive__title {
+  font-size: clamp(1.4rem, 4.5vw, 3.8rem);
+  font-weight: bold;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: inherit;
+  word-break: break-word;
+  padding-top: 0;
+  padding-bottom: 0.15em;
+}
+
+/* ════════════════════════════════════════════════════════════
+   NEXT UP LABEL
+════════════════════════════════════════════════════════════ */
+.archive__next-up {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8b0000;
+  padding: 0.9rem 1rem 0.9rem calc(var(--num-w) + 1rem);
+  border-bottom: var(--row-border);
+  user-select: none;
+}
+
+/* ════════════════════════════════════════════════════════════
+   FUTURE ROW
+════════════════════════════════════════════════════════════ */
+.archive__row--future {
+  cursor: default;
+  color: var(--grey-future);
+}
+
+.archive__row--future:hover {
+  color: var(--grey-future);
+  background: transparent;
+}
+
+.archive__title--future {
+  color: var(--grey-future);
+  letter-spacing: 0.05em;
+  /* dotted question marks like screenshot */
+  opacity: 0.55;
+}
+
+/* ════════════════════════════════════════════════════════════
+   PROJECT PAGE
+════════════════════════════════════════════════════════════ */
+.project {
+  padding: 2.4rem 1rem 6rem;
+  max-width: 860px;
+}
+
+.project__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 3rem;
+  transition: color 0.2s ease;
+}
+
+.project__back:hover { color: var(--white); }
+
+.project__num {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  color: var(--grey);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+}
+
+.project__title {
+  font-size: clamp(2rem, 7vw, 5.5rem);
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 0.92;
+  color: var(--white);
+  margin-bottom: 2.5rem;
+  border-bottom: var(--row-border);
+  padding-bottom: 2rem;
+}
+
+.project__meta {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.project__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.project__meta-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.project__meta-value {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.project__desc {
+  font-size: clamp(0.8rem, 1.4vw, 1rem);
+  line-height: 1.9;
+  color: var(--grey);
+  max-width: 60ch;
+  margin-bottom: 3rem;
+  border-bottom: var(--row-border);
+  padding-bottom: 2.5rem;
+}
+
+.project__cover {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--grey-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey-mid);
+  margin-bottom: 3rem;
+  border-bottom: var(--row-border);
+}
+
+.project__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project__sub-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 1rem;
+}
+
+.project__sub-list {
+  list-style: none;
+  margin-bottom: 3rem;
+  border-bottom: var(--row-border);
+  padding-bottom: 2rem;
+}
+
+.project__sub-item {
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--grey);
+  padding: 0.6rem 0;
+  border-top: var(--row-border);
+  transition: color 0.2s ease, padding-left 0.25s var(--ease);
+}
+
+.project__sub-item:hover {
+  color: var(--white);
+  padding-left: 0.6rem;
+}
+
+.project__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+}
+
+.project__nav-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.project__nav-link {
+  font-size: clamp(0.8rem, 1.8vw, 1.1rem);
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--grey);
+  transition: color 0.2s ease;
+}
+
+.project__nav-link:hover { color: var(--white); }
+
+/* ════════════════════════════════════════════════════════════
+   ABOUT PAGE
+════════════════════════════════════════════════════════════ */
+.about {
+  padding: 2.4rem 1rem 6rem;
+  max-width: 700px;
+}
+
+.about__title {
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 0.92;
+  color: var(--white);
+  margin-bottom: 2.5rem;
+  border-bottom: var(--row-border);
+  padding-bottom: 1.5rem;
+}
+
+.about__bio {
+  font-size: clamp(0.8rem, 1.4vw, 1rem);
+  line-height: 1.9;
+  color: var(--grey);
+  max-width: 58ch;
+  margin-bottom: 3rem;
+  border-bottom: var(--row-border);
+  padding-bottom: 2rem;
+}
+
+.about__section-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 1rem;
+}
+
+.about__list {
+  list-style: none;
+  margin-bottom: 3rem;
+  border-bottom: var(--row-border);
+  padding-bottom: 1.5rem;
+}
+
+.about__list li {
+  font-size: clamp(0.75rem, 1.3vw, 0.9rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--grey);
+  padding: 0.55rem 0;
+  border-top: var(--row-border);
+  transition: color 0.2s ease;
+}
+
+.about__list li:hover { color: var(--white); }
+
+.about__contact-heading {
+  font-size: clamp(1.2rem, 3vw, 2.2rem);
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+
+.about__contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.about__contact-link {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grey);
+  transition: color 0.2s ease;
+}
+
+.about__contact-link:hover { color: var(--white); }
+
+/* ════════════════════════════════════════════════════════════
+   FADE IN ANIMATION
+════════════════════════════════════════════════════════════ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.archive,
+.project,
+.about {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+  :root {
+    --num-w: 2.8rem;
+  }
+
+  .nav { padding: 0.55rem 0.75rem; }
+  .nav__links { gap: 1.5rem; }
+  .nav__links a { font-size: 0.65rem; }
+
+  .archive__row { padding-left: 0.75rem; padding-right: 0.75rem; }
+  .archive__next-up { padding-left: calc(var(--num-w) + 0.75rem); }
+
+  .project { padding: 2.4rem 0.75rem 5rem; }
+  .about   { padding: 2.4rem 0.75rem 5rem; }
+}
