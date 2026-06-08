@@ -3,11 +3,11 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import projects from "../data/projects";
 
 export default function ProjectPage() {
-  const { slug }   = useParams();
-  const real       = projects.filter((p) => !p.future);
-  const project    = real.find((p) => p.slug === slug);
-  const idx        = real.findIndex((p) => p.slug === slug);
-  const next       = real[(idx + 1) % real.length];
+  const { slug } = useParams();
+  const real     = projects.filter((p) => !p.future);
+  const project  = real.find((p) => p.slug === slug);
+  const idx      = real.findIndex((p) => p.slug === slug);
+  const next     = real[(idx + 1) % real.length];
 
   useEffect(() => { window.scrollTo(0, 0); }, [slug]);
 
@@ -32,7 +32,9 @@ export default function ProjectPage() {
         {project.tags && (
           <div className="project__meta-item">
             <span className="project__meta-label">Tags</span>
-            <span className="project__meta-value">{project.tags.join(" · ")}</span>
+            <span className="project__meta-value">
+              {project.tags.join(" · ")}
+            </span>
           </div>
         )}
       </div>
@@ -42,7 +44,7 @@ export default function ProjectPage() {
       <div className="project__cover">
         {project.cover
           ? <img src={project.cover} alt={project.title} />
-          : <span>{String(project.id).padStart(3,"0")} — {project.title}</span>
+          : <span>#{project.id} — {project.title}</span>
         }
       </div>
 
