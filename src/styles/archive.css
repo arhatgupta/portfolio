@@ -1,22 +1,4 @@
 /* ════════════════════════════════════════════════════════════
-   WHAT WAS REMOVED:
-   - clamp() on every font-size
-   - vw-based font sizing (5.5vw, 4.2vw, etc.)
-   - responsive @media breakpoints that scaled down typography
-   - overflow:hidden on titles that clipped long names
-
-   WHAT REPLACED IT:
-   - Fixed px values on all type (88px titles, 32px numbers)
-   - overflow-x: auto on body/html — archive scrolls sideways
-     on narrow viewports instead of reflow/shrink
-   - min-width: 900px on .archive — prevents layout collapse
-   - white-space: nowrap on titles — single-line, always
-   - zoom-stable: browser zoom changes px values uniformly,
-     so proportions stay identical at 67%, 100%, 125%
-     exactly like mschf.com
-════════════════════════════════════════════════════════════ */
-
-/* ════════════════════════════════════════════════════════════
    NAVBAR
 ════════════════════════════════════════════════════════════ */
 .nav {
@@ -30,17 +12,12 @@
   background: var(--black);
   z-index: 200;
   user-select: none;
-  /* fixed px height so archive padding-top can match exactly */
   height: 38px;
 }
 
 .nav__logo {
-<<<<<<< Updated upstream
-  font-size: 1rem;
-=======
   font-family: var(--font);
   font-size: 14px;
->>>>>>> Stashed changes
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -54,15 +31,10 @@
   gap: 32px;
 }
 
-<<<<<<< Updated upstream
-.nav__links a {
-  font-size: 2rem;
-=======
 .nav__link {
   font-family: var(--font);
   font-size: 12px;
   font-weight: 400;
->>>>>>> Stashed changes
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--grey);
@@ -73,41 +45,24 @@
 
 /* ════════════════════════════════════════════════════════════
    ARCHIVE WRAPPER
-
-   min-width: 900px — prevents the archive collapsing
-   below the point where 88px titles become unreadable.
-   Body overflow-x:auto handles the horizontal scroll.
 ════════════════════════════════════════════════════════════ */
 .archive {
-<<<<<<< Updated upstream
-  /* push below fixed nav — nav is ~2rem tall */
-  padding-top: 3.5rem;
-  padding-bottom: 8rem;
-=======
   min-width: 900px;
-  /* exactly nav height (38px) */
   padding-top: 38px;
   padding-bottom: 200px;
->>>>>>> Stashed changes
 }
 
 /* ════════════════════════════════════════════════════════════
    ARCHIVE ROW
-
-   grid: [80px num] [1fr title] [auto arrow]
-   No vertical padding. Row height = title line-height only.
-   This is what creates the dense MSCHF rhythm.
 ════════════════════════════════════════════════════════════ */
 .archive__row {
   display: grid;
-  grid-template-columns: var(--num-w) 1fr auto;
+  grid-template-columns: 80px 1fr auto;
   align-items: center;
-
   padding-top: 0;
   padding-bottom: 0;
   padding-left: 20px;
   padding-right: 20px;
-
   text-decoration: none;
   color: var(--grey);
   transition: color 0.2s ease;
@@ -117,23 +72,8 @@
 .archive__row:hover { color: var(--white); }
 
 /* ─── Number cell ───────────────────────────────────────── */
-/*
-  Fixed 32px. Same font as titles.
-  # stacked above number, line-height: 0.9 = tight stack.
-  Baseline-aligned with title.
-*/
 .archive__num {
   display: flex;
-<<<<<<< Updated upstream
-  flex-direction: row;
-  align-items: baseline;
-  gap: 0.1em;
-
-  width: var(--num-w);
-  min-width: var(--num-w);
-  flex-shrink: 0;
-  margin-right: 3rem;
-=======
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
@@ -142,27 +82,10 @@
   flex-shrink: 0;
   padding-bottom: 4px;
   line-height: 0.9;
->>>>>>> Stashed changes
 }
 
 .archive__hash,
 .archive__id {
-<<<<<<< Updated upstream
-  font-family: "IBM Plex Mono", monospace;
-  font-size: clamp(1.5rem, 2.5vw, 3rem);
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: 0.015em;
-}
-/* ─── Title cell ────────────────────────────────────────── */
-.archive__title {
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 300;
-  font-size: clamp(2rem, 4vw, 4.5rem);
-  letter-spacing: 0.015em;
-  text-transform: uppercase;
-  line-height: 1;
-=======
   font-family: var(--font);
   font-size: 32px;
   font-weight: 400;
@@ -173,15 +96,6 @@
 }
 
 /* ─── Title ─────────────────────────────────────────────── */
-/*
-  88px fixed. No clamp. No vw.
-  white-space: nowrap — NEVER wraps (CYBERTECH + FUTURISTIC MONK
-  stays on one line at 100% zoom).
-  overflow: visible — title extends into right padding zone if
-  needed; body overflow-x:auto catches it.
-  line-height: 0.9 — this is the spacing engine for all rows.
-  Identical for real and future rows = zero gap irregularity.
-*/
 .archive__title {
   font-family: var(--font);
   font-size: 88px;
@@ -211,7 +125,6 @@
 .archive__row:hover .archive__arrow {
   opacity: 1;
   transform: translateX(0);
->>>>>>> Stashed changes
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -225,14 +138,12 @@
   position: absolute;
   top: 6px;
   left: 55%;
-
   font-family: var(--font);
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--red);
-
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -257,11 +168,6 @@
   display: none;
 }
 
-/*
-  Future title must use IDENTICAL font-size and line-height
-  as real titles. This is what prevents the gap between
-  project #7 and the first ??? row.
-*/
 .archive__title--future {
   font-family: var(--font);
   font-size: 88px;
@@ -453,27 +359,9 @@
 /* ════════════════════════════════════════════════════════════
    ABOUT PAGE
 ════════════════════════════════════════════════════════════ */
-/* ════════════════════════════════════════════════════════════
-   ABOUT PAGE
-════════════════════════════════════════════════════════════ */
 .about {
-<<<<<<< Updated upstream
-  padding: 2.4rem 1rem 6rem;
-  max-width: 1900px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-}
-
-/* LEFT COLUMN */
-.about__left {
-  display: flex;
-  flex-direction: column;
-=======
   padding: 60px 20px 120px;
   max-width: 700px;
->>>>>>> Stashed changes
 }
 
 .about__back {
@@ -485,29 +373,12 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--grey);
-<<<<<<< Updated upstream
-  margin-bottom: 2rem;
-  transition: color 0.15s ease;
-  font-family: var(--font);
-  width: fit-content;
-=======
   margin-bottom: 48px;
   transition: color 0.2s ease;
->>>>>>> Stashed changes
 }
-
 .about__back:hover { color: var(--white); }
 
 .about__title {
-<<<<<<< Updated upstream
-  font-size: clamp(3rem, 10vw, 8rem); /* Made much larger for impact */
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  line-height: 0.85;
-  color: var(--white);
-  font-family: var(--font);
-=======
   font-family: var(--font);
   font-size: 56px;
   font-weight: 400;
@@ -518,24 +389,9 @@
   margin-bottom: 32px;
   border-bottom: 1px solid var(--grey-dim);
   padding-bottom: 20px;
->>>>>>> Stashed changes
-}
-
-/* RIGHT COLUMN */
-.about__right {
-  display: flex;
-  flex-direction: column;
 }
 
 .about__bio {
-<<<<<<< Updated upstream
-  font-size: clamp(0.9rem, 1.5vw, 1.3rem); /* Larger, more elegant reading size */
-  line-height: 1.6;
-  color: var(--grey);
-  max-width: 50ch; /* Prevents text lines from getting too wide to read */
-  margin-bottom: 4rem;
-  font-family: var(--font);
-=======
   font-family: var(--font);
   font-size: 14px;
   line-height: 1.85;
@@ -544,47 +400,19 @@
   margin-bottom: 40px;
   border-bottom: 1px solid var(--grey-dim);
   padding-bottom: 28px;
->>>>>>> Stashed changes
-}
-
-.about__details {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  margin-bottom: 4rem;
 }
 
 .about__section-label {
-<<<<<<< Updated upstream
-  font-size: 0.65rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--grey);
-  margin-bottom: 1rem;
-  font-family: var(--font);
-=======
   font-family: var(--font);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--grey);
   margin-bottom: 10px;
->>>>>>> Stashed changes
 }
 
 .about__list {
   list-style: none;
-<<<<<<< Updated upstream
-  border-bottom: 1px solid var(--grey-dim);
-}
-
-.about__list li {
-  font-size: clamp(0.8rem, 1.2vw, 1rem);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--white);
-  padding: 0.75rem 0;
-=======
   margin-bottom: 40px;
   border-bottom: 1px solid var(--grey-dim);
   padding-bottom: 20px;
@@ -597,29 +425,12 @@
   text-transform: uppercase;
   color: var(--grey);
   padding: 8px 0;
->>>>>>> Stashed changes
   border-top: 1px solid var(--grey-dim);
   transition: color 0.2s ease;
 }
-
-.about__list li:hover { 
-  color: var(--grey); 
-}
-
-/* CONTACT SECTION */
-.about__contact {
-  padding-top: 2rem;
-}
+.about__list li:hover { color: var(--white); }
 
 .about__contact-heading {
-<<<<<<< Updated upstream
-  font-size: 0.65rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--grey);
-  margin-bottom: 1.5rem;
-  font-family: var(--font);
-=======
   font-family: var(--font);
   font-size: 32px;
   font-weight: 400;
@@ -627,70 +438,11 @@
   text-transform: uppercase;
   color: var(--white);
   margin-bottom: 20px;
->>>>>>> Stashed changes
 }
 
 .about__contact-links {
   display: flex;
   flex-direction: column;
-<<<<<<< Updated upstream
-  gap: 0.8rem;
-}
-
-.about__contact-link {
-  font-size: clamp(1.2rem, 2vw, 2rem);
-  font-weight: 300;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--white);
-  text-decoration: none;
-  transition: color 0.2s ease, padding-left 0.2s var(--ease);
-  font-family: var(--font);
-  border-bottom: 1px solid transparent;
-  width: fit-content;
-}
-
-.about__contact-link:hover { 
-  color: var(--grey); 
-  padding-left: 0.5rem;
-}
-
-/* ════════════════════════════════════════════════════════════
-   DESKTOP UPGRADES (The "Classy" Alignment)
-════════════════════════════════════════════════════════════ */
-@media (min-width: 900px) {
-  .about {
-    /* Changes to 2 columns on desktop */
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    padding: 4rem 2rem 8rem;
-  }
-
-  .about__left {
-    /* Sticks the title to the screen while you scroll the right side */
-    position: sticky;
-    top: 6rem;
-    height: fit-content;
-  }
-
-  .about__bio {
-    /* Add a top margin to visually align the bio with the name */
-    margin-top: 2rem;
-  }
-}
-/* ════════════════════════════════════════════════════════════
-   RESPONSIVE
-════════════════════════════════════════════════════════════ */
-@media (max-width: 600px) {
-  :root { --num-w: 2.4rem; }
-  .nav { padding: 0.45rem 0.75rem; }
-  .nav__links { gap: 1.2rem; }
-  .archive__row { padding-left: 0.5rem; }
-  .archive__next-up { right: 0.75rem; }
-  .project { padding: 2.2rem 0.75rem 4rem; }
-  .about   { padding: 2.2rem 0.75rem 4rem; }
-}
-=======
   gap: 6px;
 }
 
@@ -703,4 +455,3 @@
   transition: color 0.2s ease;
 }
 .about__contact-link:hover { color: var(--white); }
->>>>>>> Stashed changes
