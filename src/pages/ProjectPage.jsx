@@ -2,8 +2,19 @@ import { useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import projects from "../data/projects";
 
+// IMPORT THE CUSTOM SLAP PAGE
+import SlapProject from "./SlapProject"; 
+
 export default function ProjectPage() {
   const { slug }   = useParams();
+  
+  // ── ROUTE INTERCEPTOR ──
+  // If the URL is /project/logofolio, render our custom interactive page
+  if (slug === "logofolio") {
+    return <SlapProject />;
+  }
+
+  // Otherwise, render the standard project template
   const real       = projects.filter((p) => !p.future);
   const project    = real.find((p) => p.slug === slug);
   const idx        = real.findIndex((p) => p.slug === slug);

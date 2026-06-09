@@ -154,3 +154,17 @@ img { display: block; max-width: 100%; }
   width: 0%;
   background: var(--white);
 }
+
+/* ════════════════════════════════════════════════════════════
+   PAGE TRANSITION OVERLAY
+════════════════════════════════════════════════════════════ */
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--black);
+  z-index: 9998; /* Sits just below the Preloader */
+  pointer-events: none;
+}
