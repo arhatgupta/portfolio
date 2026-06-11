@@ -2,18 +2,27 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function About() {
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <main className="about">
-      
-      {/* LEFT COLUMN: Sticky on Desktop */}
+
+      {/* LEFT COLUMN */}
       <div className="about__left">
-        <Link to="/" className="about__back">← Archive</Link>
-        <h1 className="about__title">Abha<br />Ukey</h1>
+        <Link to="/" className="about__back">
+          ← Archive
+        </Link>
+
+        <h1 className="about__title">
+          Abha
+          <br />
+          Ukey
+        </h1>
       </div>
 
-      {/* RIGHT COLUMN: Scrolls */}
+      {/* RIGHT COLUMN */}
       <div className="about__right">
         <p className="about__bio">
           Graphic designer and art director based in Pune, India.
@@ -34,7 +43,9 @@ export default function About() {
                 "Typography & Lettering",
                 "Art Direction & Photography",
                 "Packaging Design",
-              ].map((s) => <li key={s}>{s}</li>)}
+              ].map((s) => (
+                <li key={s}>{s}</li>
+              ))}
             </ul>
           </div>
 
@@ -57,11 +68,41 @@ export default function About() {
 
         <div className="about__contact">
           <h2 className="about__contact-heading">Get in touch</h2>
+
           <div className="about__contact-links">
-            <a href="mailto:designer.ukey@gmail.com" className="about__contact-link">designer.ukey@gmail.com ↗</a>
-            <a href="https://www.behance.net/" target="_blank" rel="noreferrer" className="about__contact-link">Behance ↗</a>
-            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className="about__contact-link">Instagram ↗</a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" className="about__contact-link">LinkedIn ↗</a>
+            <a
+              href="mailto:designer.ukey@gmail.com"
+              className="about__contact-link"
+            >
+              designer.ukey@gmail.com ↗
+            </a>
+
+            <a
+              href="https://www.behance.net/"
+              target="_blank"
+              rel="noreferrer"
+              className="about__contact-link"
+            >
+              Behance ↗
+            </a>
+
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="about__contact-link"
+            >
+              Instagram ↗
+            </a>
+
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="about__contact-link"
+            >
+              LinkedIn ↗
+            </a>
           </div>
         </div>
       </div>

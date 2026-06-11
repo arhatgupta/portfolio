@@ -85,12 +85,25 @@ const projects = [
     cover: null,
     future: false,
   },
+  {
+    id: 8,
+    slug: "posters-and-fun",
+    title: "POSTERS & FUN",
+    category: "POSTER DESIGN & ILLUSTRATION",
+    year: "2022–2024",
+    description:
+      "A curated digital exhibition of poster work spanning typography, identity, culture, and emotion. Six original posters presented as an immersive gallery experience.",
+    tags: ["Poster Design", "Illustration", "Exhibition"],
+    cover: null,
+    future: false,
+    isExhibition: true,
+  },
   // ── FUTURE ──────────────────────────────────────────────
-  { id: 8,  future: true },
   { id: 9,  future: true },
   { id: 10, future: true },
   { id: 11, future: true },
   { id: 12, future: true },
+  { id: 13, future: true },
 ];
 
 export default projects;

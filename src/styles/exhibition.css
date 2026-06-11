@@ -1,0 +1,257 @@
+/* ════════════════════════════════════════════════════════════
+   EXHIBITION CSS
+════════════════════════════════════════════════════════════ */
+
+/* ─── Loading ───────────────────────────────────────────── */
+.ex-load {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 500;
+}
+.ex-load__bar {
+  width: 200px;
+  height: 1px;
+  background: #222;
+}
+.ex-load__fill {
+  height: 100%;
+  background: #ccc;
+  transition: width 0.25s ease;
+}
+.ex-load__pct {
+  font-family: var(--font);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: #444;
+}
+
+/* ─── Entry ─────────────────────────────────────────────── */
+.ex-entry {
+  position: fixed;
+  inset: 0;
+  background: #060606;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 400;
+  transition: opacity 0.9s ease;
+}
+.ex-entry__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.ex-entry__byline {
+  font-family: var(--font);
+  font-size: 11px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: #3a3a3a;
+  margin-bottom: 20px;
+}
+.ex-entry__title {
+  font-family: var(--font);
+  font-size: 58px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 0.94;
+  margin-bottom: 18px;
+}
+.ex-entry__sub {
+  font-family: var(--font);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #333;
+  margin-bottom: 52px;
+}
+.ex-entry__btn {
+  font-family: var(--font);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #000;
+  background: #fff;
+  border: none;
+  padding: 15px 44px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.ex-entry__btn:hover { background: #ddd; }
+.ex-entry__archive {
+  position: absolute;
+  bottom: 26px;
+  left: 26px;
+  font-family: var(--font);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #2e2e2e;
+  transition: color 0.2s ease;
+}
+.ex-entry__archive:hover { color: #fff; }
+
+/* ─── Gallery wrapper ───────────────────────────────────── */
+.ex-wrap {
+  position: fixed;
+  inset: 0;
+  background: #111;
+  overflow: hidden;
+}
+.ex-canvas-wrap {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.8s ease;
+}
+.ex-canvas-wrap canvas { cursor: crosshair; }
+
+/* ─── Top bar ───────────────────────────────────────────── */
+.ex-topbar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 40px;
+  background: rgba(8, 8, 8, 0.88);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  pointer-events: all;
+}
+.ex-topbar__title {
+  font-family: var(--font);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+.ex-topbar__back {
+  font-family: var(--font);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  transition: color 0.2s ease;
+}
+.ex-topbar__back:hover { color: #fff; }
+
+/* ─── Controls HUD ──────────────────────────────────────── */
+.ex-controls {
+  position: absolute;
+  bottom: 22px;
+  right: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 100;
+  transition: opacity 1.2s ease;
+  pointer-events: none;
+}
+.ex-controls__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ex-controls__row kbd {
+  font-family: var(--font);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 3px 8px;
+  min-width: 52px;
+  text-align: center;
+}
+.ex-controls__row span {
+  font-family: var(--font);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+
+/* ─── Hover hint ────────────────────────────────────────── */
+.ex-hint {
+  font-family: var(--font);
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  background: rgba(0,0,0,0.55);
+  padding: 5px 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* ─── Museum plaque (in-world label) ────────────────────── */
+/*
+  Appears beside/below the artwork in world space.
+  Styled like a real gallery wall label:
+  thin rule line, title, medium body, subdued palette.
+  White card on grey wall.
+*/
+.ex-plaque {
+  width: 220px;
+  background: rgba(250, 249, 247, 0.97);
+  padding: 14px 16px 16px;
+  pointer-events: all;
+  transition: opacity 0.5s ease;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.22);
+}
+.ex-plaque__rule {
+  width: 28px;
+  height: 1px;
+  background: #aaa;
+  margin-bottom: 10px;
+}
+.ex-plaque__title {
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #111;
+  margin-bottom: 5px;
+  line-height: 1;
+}
+.ex-plaque__meta {
+  font-family: var(--font);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 9px;
+}
+.ex-plaque__desc {
+  font-family: var(--font);
+  font-size: 11px;
+  line-height: 1.65;
+  color: #555;
+  margin-bottom: 12px;
+}
+.ex-plaque__back {
+  font-family: var(--font);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #888;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.ex-plaque__back:hover { color: #000; }
