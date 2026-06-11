@@ -1,0 +1,215 @@
+/* src/styles/slap.css */
+
+.slap-page {
+  background-color: #060606;
+  color: #f0f0ec;
+  overflow-x: hidden;
+  font-family: var(--font);
+  position: relative;
+  z-index: 1; 
+}
+
+/* ── 1. HERO SECTION ── */
+.slap-hero {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-color: #6C244C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.slap-hero__title {
+  font-size: clamp(4rem, 15vw, 15rem);
+  font-weight: 700;
+  color: #D4E059;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 0.8;
+  text-align: center;
+  z-index: 10;
+  pointer-events: none; /* Let clicks pass through the text to the stickers */
+}
+
+.slap-hero__subtitle {
+  display: block;
+  font-size: clamp(1rem, 3vw, 2rem);
+  color: #E882B5;
+  letter-spacing: 0.05em;
+  margin-top: 1rem;
+}
+
+.slap-hero__floating-img {
+  position: absolute;
+  width: clamp(120px, 18vw, 300px);
+  z-index: 5;
+  filter: drop-shadow(0px 15px 25px rgba(0,0,0,0.4));
+  cursor: pointer;
+  /* Removed pointer-events: none so we can hover over them! */
+}
+
+/* ── 2. STICKER PLAYGROUND ── */
+.slap-playground {
+  position: relative;
+  height: 100vh;
+  background-color: #E882B5;
+  overflow: hidden;
+}
+
+.slap-playground__header {
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+  color: #DE243D;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.slap-sticker {
+  position: absolute;
+  width: clamp(150px, 20vw, 350px);
+  user-select: none;
+  filter: drop-shadow(5px 15px 15px rgba(0,0,0,0.2));
+  transition: transform 0.1s ease;
+  touch-action: none;
+}
+
+.slap-sticker:hover {
+  transform: scale(1.1) !important;
+}
+
+/* ── 3. MARQUEE SECTION ── */
+.slap-marquee-section {
+  background-color: #DE243D;
+  color: #f0f0ec;
+  padding: 6rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.slap-marquee {
+  display: inline-block;
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* ── 4. OVERVIEW ── */
+.slap-overview {
+  padding: 8rem 2rem;
+  background-color: #D4E059;
+  color: #6C244C;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
+
+@media (min-width: 900px) {
+  .slap-overview { 
+    grid-template-columns: 1fr 2fr; 
+    padding: 10rem 4rem;
+  }
+}
+
+.slap-overview__meta h3 {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+  opacity: 0.7;
+}
+
+.slap-overview__meta p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.slap-overview__text {
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* ── 5. COLOR STORY ── */
+.slap-colors {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+}
+
+@media (min-width: 900px) {
+  .slap-colors { flex-direction: row; }
+}
+
+.slap-color-block {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: flex 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: crosshair;
+}
+
+.slap-color-block:hover { flex: 2.5; }
+
+/* ── 6. EXPLORATION WALL ── */
+.slap-wall {
+  padding: 8rem 2rem;
+  background-color: #f0f0ec;
+}
+
+.slap-wall__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.slap-wall__item {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  will-change: transform, box-shadow;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+/* REMOVED .slap-wall__item:hover - GSAP controls this now! */
+
+/* ── 7. FOOTER ── */
+.slap-footer {
+  background-color: #f0f0ec;
+  padding: 0 0 6rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.slap-back-btn {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #060606;
+  border-bottom: 2px solid #060606;
+  padding-bottom: 0.3rem;
+  transition: opacity 0.2s ease;
+}
+
+.slap-back-btn:hover {
+  opacity: 0.5;
+}

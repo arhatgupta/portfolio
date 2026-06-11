@@ -1,34 +1,58 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import Navbar      from "./components/Navbar";
-import Home        from "./pages/Home";
-import About       from "./pages/About";
+import gsap from "gsap";
+
+import Navbar from "./components/Navbar";
+import Preloader from "./components/Preloader";
+
+import Home from "./pages/Home";
+import About from "./pages/About";
 import ProjectPage from "./pages/ProjectPage";
-import Exhibition  from "./pages/Exhibition";
+import Exhibition from "./pages/Exhibition";
+
 import "./styles/global.css";
 import "./styles/archive.css";
 import "./styles/exhibition.css";
 
-function ScrollReset() {
+function PageTransitionController() {
   const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
-  return null;
+
+  // On first load, hide curtain above viewport
+  useEffect(() => {
+    gsap.set("#page-transition", { yPercent: -100 });
+  }, []);
+
+  // Animate on route changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    gsap.to("#page-transition", {
+      yPercent: -100,
+      duration: 0.8,
+      ease: "power3.inOut",
+    });
+  }, [pathname]);
+
+  return <div id="page-transition" className="page-transition"></div>;
 }
 
 function AppRoutes() {
   const { pathname } = useLocation();
-  // Hide navbar on exhibition route — it has its own top bar
+
+  // Exhibition page has its own navigation
   const isExhibition = pathname === "/project/posters-and-fun";
 
   return (
     <>
-      <ScrollReset />
+      <PageTransitionController />
+
       {!isExhibition && <Navbar />}
+
       <Routes>
-        <Route path="/"                        element={<Home />} />
-        <Route path="/about"                   element={<About />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/project/posters-and-fun" element={<Exhibition />} />
-        <Route path="/project/:slug"           element={<ProjectPage />} />
+        <Route path="/project/:slug" element={<ProjectPage />} />
       </Routes>
     </>
   );
@@ -37,6 +61,7 @@ function AppRoutes() {
 export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <Preloader />
       <AppRoutes />
     </BrowserRouter>
   );
